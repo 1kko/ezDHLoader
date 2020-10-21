@@ -4,6 +4,7 @@ from urllib.parse import urlparse, parse_qs
 import time
 import random
 import configparser
+import os
 
 
 def output_callback(total, recvd, ratio, rate, eta):
@@ -34,11 +35,13 @@ if __name__ == "__main__":
         [sg.Submit("OK"), sg.Cancel()],
         [sg.ProgressBar(1, orientation='h', size=(
             45, 5), key='progressbar'),
-         sg.Text(size=(12, 1), key='eta', justification='r')]
+         sg.Text(size=(12, 1), key='eta', justification='r')],
         # [sg.Output(size=(80, 20))],
+        [sg.Text("Destination", size=(15, 1)), sg.InputText(os.getcwd(),
+                                                            key='dstPath'), sg.FolderBrowse()],
     ]
 
-    window = sg.Window('ezDHLoader v0.5' + with_apikey, layout)
+    window = sg.Window('ezDHLoader v0.6' + with_apikey, layout)
     progress_bar = window['progressbar']
 
     youtubeId = ""
@@ -59,8 +62,8 @@ if __name__ == "__main__":
         # download
         y = pafy.new(youtubeId)
         video = y.getbest()
-        vfilename = video.download(
-            quiet=True, callback=output_callback, remux_audio=True)
+        vfilename = video.download(filepath=os.path.join(values['dstPath'], video.title+"."+video.extension),
+                                   quiet=True, callback=output_callback, remux_audio=True)
 
         sg.Popup("Done")
 
