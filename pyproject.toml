@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "ezdhloader"
-version = "0.8"
+version = "0.9"
 description = ""
-authors = ["<me@1kko.com>"]
+authors = ["1kko <me@1kko.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
