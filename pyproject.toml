@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "ezdhloader"
+version = "0.8"
+description = ""
+authors = ["<me@1kko.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pysimplegui = "^5.0.7"
+configparser = "^7.1.0"
+yt-dlp = "^2024.12.23"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
